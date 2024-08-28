@@ -340,12 +340,12 @@ model_spec:
   d_hid: 64
   nlayers: 4
 training_spec:
-  device: cpu
-  epochs: 100
-  iter_save: 5
-  batch_size: 100
+  device: cuda
+  epochs: 1000
+  iter_save: 50
+  batch_size: 200
   log_interval: 10
-  lr: 0.0008
+  lr: 0.0001
   accumulation_steps: 1
   dropout: 0.2
   criterion:
@@ -673,7 +673,7 @@ training_spec:
   optimizer:
     name: AdamW
   scheduler:
-    name: StepLR
-    step_size: 1
-    gamma: 0.95
-  continue_training: false
+    name: CosineAnnealingLR
+    T_max: 1100
+    eta_min: 0.000001
+  continue_training: true
